@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Jogos Educativos</title>
+  <!-- Link para o arquivo CSS externo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <h1>🧠 Portal do Conhecimento</h1>
+    <p>Aprenda se divertindo com nossos jogos educativos!</p>
+  </header>
+
+  <!-- Seleção de Jogos -->
+  <section class="games-grid">
+    <div class="game-card">
+      <div class="icon">🃏</div>
+      <h3>Jogo da Memória</h3>
+      <p>Exercite o cérebro associando pares de imagens e conceitos educativos.</p>
+      <button onclick="document.getElementById('memory-game-section').scrollIntoView({behavior: 'smooth'})">Jogar Agora</button>
+    </div>
+
+    <div class="game-card">
+      <div class="icon">🔍</div>
+      <h3>Caça-Palavras</h3>
+      <p>Encontre palavras escondidas na grade para enriquecer seu vocabulário.</p>
+      <button onclick="alert('Em breve!')">Em Breve</button>
+    </div>
+
+    <div class="game-card">
+      <div class="icon">✏️</div>
+      <h3>Palavras Cruzadas</h3>
+      <p>Resolva pistas com base em conhecimentos gerais e matérias escolares.</p>
+      <button onclick="alert('Em breve!')">Em Breve</button>
+    </div>
+  </section>
+
+  <!-- Área do Jogo da Memória -->
+  <section id="memory-game-section" class="game-container">
+    <h2>🃏 Jogo da Memória Educativo</h2>
+    <p>Encontre os pares dos símbolos do conhecimento abaixo:</p>
+
+    <div class="memory-board" id="board"></div>
+
+    <button id="restart-btn" class="btn-restart" onclick="resetGame()">Reiniciar Jogo</button>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; Portal de Jogos Educativos — Criado para ajudar no aprendizado!</p>
+  </footer>
+
+  <script>
+    const emojis = ['📚', '📚', '🧪', '🧪', '🎨', '🎨', '🔢', '🔢', '🌍', '🌍', '📐', '📐', '🧬', '🧬', '💻', '💻'];
+    let flippedCards = [];
+    let matchedPairs = 0;
+
+    function initGame() {
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      flippedCards = [];
+      matchedPairs = 0;
+
+      // Embaralhar cartas
+      const shuffled = [...emojis].sort(() => 0.5 - Math.random());
+
+      shuffled.forEach((symbol, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.symbol = symbol;
+        card.dataset.index = index;
+        card.innerText = '?';
+        card.addEventListener('click', flipCard);
+        board.appendChild(card);
+      });
+    }
+
+    function flipCard() {
+      if (flippedCards.length < 2 && !this.classList.contains('flipped') && !this.classList.contains('matched')) {
+        this.classList.add('flipped');
+        this.innerText = this.dataset.symbol;
+        flippedCards.push(this);
+
+        if (flippedCards.length === 2) {
+          checkMatch();
+        }
+      }
+    }
+
+    function checkMatch() {
+      const [card1, card2] = flippedCards;
+      if (card1.dataset.symbol === card2.dataset.symbol) {
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        matchedPairs++;
+        flippedCards = [];
+
+        if (matchedPairs === emojis.length / 2) {
+          setTimeout(() => alert('Parabéns! Você encontrou todos os pares! 🎉'), 300);
+        }
+      } else {
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+          card1.innerText = '?';
+          card2.innerText = '?';
+          flippedCards = [];
+        }, 800);
+      }
+    }
+
+    function resetGame() {
+      initGame();
+    }
+
+    // Inicializar no carregamento da página
+    initGame();
+  </script>
+</body>
+</html>

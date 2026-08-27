@@ -1,0 +1,176 @@
+/* Reset Básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4f8;
+  color: #2c3e50;
+  text-align: center;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* Cabeçalho */
+header {
+  margin-bottom: 30px;
+  padding: 20px 0;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+/* Grid dos Cards de Jogos */
+.games-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.game-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  width: 280px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+.game-card .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.game-card h3 {
+  color: #2980b9;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.game-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.game-card button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.game-card button:hover {
+  background-color: #27ae60;
+}
+
+/* Conteiner do Jogo */
+.game-container {
+  background: #ffffff;
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-container h2 {
+  color: #34495e;
+  margin-bottom: 8px;
+}
+
+.game-container p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Tabuleiro do Jogo da Memória */
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.card {
+  height: 90px;
+  background-color: #34495e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card.flipped {
+  background-color: #3498db;
+  transform: rotateY(180deg);
+}
+
+.card.matched {
+  background-color: #2ecc71;
+  cursor: default;
+  transform: none;
+}
+
+/* Botão Reiniciar */
+.btn-restart {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.btn-restart:hover {
+  background-color: #c0392b;
+}
+
+/* Rodapé */
+footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid #e0e0e0;
+}
